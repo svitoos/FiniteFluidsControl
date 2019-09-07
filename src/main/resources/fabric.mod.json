@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "finite-fluids-control",
+  "version": "${version}",
+
+  "name": "Finite Fluids Control",
+  "description": "FFC allow to control water and other fluid finite/infinite state.",
+  "authors": [
+    "svitoos"
+  ],
+  "contact": {
+    "homepage": "https://github.com/svitoos/FiniteFluidsControl",
+    "sources": "https://github.com/svitoos/FiniteFluidsControl"
+  },
+
+  "license": "MIT",
+  "icon": "assets/finite-fluids-control/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "svitoos.mcmods.ffc.FiniteFluidsControlMod"
+    ]
+  },
+
+  "mixins": [
+    "finite-fluids-control.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "breaks": {
+    "instantlava": "*"
+  }
+}

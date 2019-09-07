@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "svitoos.mcmods.ffc.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+     "FluidsControlMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
