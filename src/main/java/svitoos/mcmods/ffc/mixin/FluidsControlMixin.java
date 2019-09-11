@@ -1,10 +1,10 @@
 package svitoos.mcmods.ffc.mixin;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.class_4538;
 import net.minecraft.fluid.BaseFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ViewableWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.dimension.DimensionType;
@@ -23,17 +23,17 @@ public abstract class FluidsControlMixin extends Fluid {
 
   @Redirect(
       method =
-          "getUpdatedState(Lnet/minecraft/world/ViewableWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Lnet/minecraft/fluid/FluidState;",
+          "getUpdatedState(Lnet/minecraft/class_4538;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Lnet/minecraft/fluid/FluidState;",
       at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/BaseFluid;isInfinite()Z"))
   private boolean isInfiniteHook(
       @SuppressWarnings("unused") BaseFluid obj,
-      ViewableWorld viewableWorld,
+      class_4538 world,
       BlockPos blockPos,
       BlockState blockState) {
     boolean allowInfinite = isInfinite();
-    final Biome biome = viewableWorld.getBiome(blockPos);
+    final Biome biome = world.getBiome(blockPos);
     final Category category = biome.getCategory();
-    final DimensionType dimension = viewableWorld.getDimension().getType();
+    final DimensionType dimension = world.getDimension().getType();
     for (FluidControlData fluidControlData : FluidControlData.getData()) {
       if (fluidControlData.matches(this)) {
         allowInfinite = fluidControlData.isInfinite(category, biome, dimension, blockPos);
