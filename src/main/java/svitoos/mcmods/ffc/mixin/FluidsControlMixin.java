@@ -1,10 +1,10 @@
 package svitoos.mcmods.ffc.mixin;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.class_4538;
 import net.minecraft.fluid.BaseFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldView;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.dimension.DimensionType;
@@ -18,16 +18,16 @@ import svitoos.mcmods.ffc.FluidControlData;
 @Mixin(BaseFluid.class)
 public abstract class FluidsControlMixin extends Fluid {
 
-  @Shadow()
+  @Shadow
   abstract boolean isInfinite();
 
   @Redirect(
       method =
-          "getUpdatedState(Lnet/minecraft/class_4538;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Lnet/minecraft/fluid/FluidState;",
+          "getUpdatedState(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Lnet/minecraft/fluid/FluidState;",
       at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/BaseFluid;isInfinite()Z"))
   private boolean isInfiniteHook(
       @SuppressWarnings("unused") BaseFluid obj,
-      class_4538 world,
+      WorldView world,
       BlockPos blockPos,
       BlockState blockState) {
     boolean allowInfinite = isInfinite();

@@ -120,7 +120,7 @@ public class FluidControlData {
 
     final Identifier fluidId = Identifier.tryParse(fluidConfig.id);
     final Fluid fluid = Registry.FLUID.get(fluidId);
-    if (fluid.matchesType(Fluids.EMPTY)) {
+    if (fluid.matchesType(Fluids.field_15906)) {
       LOGGER.error("Invalid fluid '{}'", fluidId);
       return;
     }
